@@ -9,41 +9,37 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TechTalk.SpecFlow;
 
 namespace MarsQA.Pages
 {
-    public class DescriptionPage
+    public class DescriptionPage : CommonDriver
     {
-       
+        public static IWebElement descriptionEditButton => driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/div/h3/span"));
+        public static IWebElement descriptionTextarea => driver.FindElement(By.Name("value"));
+        public static IWebElement saveButton => driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/form/div/div/div[2]/button"));
+        public static IWebElement createdDescription => driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/div/span"));
+
         public void AddDescription(IWebDriver driver, string description)
         {
 
             // Identify description edit button and click on it
-            IWebElement descriptionEditButton = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/div/h3/span"));
+            Wait.WaitToBeClickable(driver, "XPath", "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/div/h3/span", 2);
             descriptionEditButton.Click();
-
-            Thread.Sleep(2000);
-
+            
             // Identify description textarea and enter valid details
-            IWebElement descriptionTextarea = driver.FindElement(By.Name("value"));
             descriptionTextarea.Clear();
-
-            Wait.WaitToBeClickable(driver, "XPath", "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/form/div/div/div[2]/button", 2);
-
             descriptionTextarea.SendKeys(description);
 
             //Click on save Button
-            driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/form/div/div/div[2]/button")).Click();
-            Thread.Sleep(2000);
+            saveButton.Click();
+            Wait.WaitToBeClickable(driver, "XPath", "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/div/span", 2);
 
-            //Check if description is present in page
-            IWebElement actualDescription = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/div/span"));
-            Thread.Sleep(1000);
         }
         
         public string GetProfileDescription(IWebDriver driver)
         {
-            IWebElement createdDescription = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/div/span"));
+            Wait.WaitToBeClickable(driver, "XPath", "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/div/span", 2);
             return createdDescription.Text;
         }
 

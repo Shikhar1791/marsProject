@@ -11,9 +11,16 @@ namespace MarsQA.StepDefinitions
     [Binding]
     public class DescriptionStepDefinitions : CommonDriver
     {
-        DescriptionPage descriptionPageObj = new DescriptionPage();
-        ProfilePage profilePageObj = new ProfilePage();
-        LoginPage loginPageObj = new LoginPage();
+        DescriptionPage descriptionPageObj;
+        ProfilePage profilePageObj;
+        LoginPage loginPageObj;
+
+        public DescriptionStepDefinitions()
+        {
+            this.descriptionPageObj = new DescriptionPage();
+            this.profilePageObj = new ProfilePage();
+            this.loginPageObj = new LoginPage();
+        }
 
         [Given(@"I logged into Mars portal successfully")]
         public void GivenILoggedIntoMarsPortalSuccessfully()
@@ -22,13 +29,13 @@ namespace MarsQA.StepDefinitions
             driver = new ChromeDriver();
 
             // Login page Object login and initialization and defination
-            loginPageObj.LoginSteps(driver);
+            loginPageObj.LoginSteps();
         }
 
         [When(@"I navigate to Profile page")]
         public void WhenINavigateToProfilePage()
         {
-            profilePageObj.GoToProfilePage(driver);
+            profilePageObj.GoToProfilePage();
         }
 
         [When(@"I add new '([^']*)'")]

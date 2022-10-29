@@ -10,9 +10,19 @@ namespace MarsQA.StepDefinitions
     [Binding]
     public class CertificationsStepDefinitions : CommonDriver
     {
-        ProfilePage profilePageObj = new ProfilePage();
-        LoginPage loginPageObj = new LoginPage();
-        CertificatePage certificatePageObj = new CertificatePage();
+        ProfilePage profilePageObj;
+        LoginPage loginPageObj;
+        CertificatePage certificatePageObj;
+
+
+        public CertificationsStepDefinitions()
+        {
+            this.profilePageObj = new ProfilePage();
+            this.loginPageObj = new LoginPage();
+            this.certificatePageObj = new CertificatePage();
+        }
+
+    
 
         [Given(@"I logged onto Mars portal successfully")]
         public void GivenILoggedOntoMarsPortalSuccessfully()
@@ -21,14 +31,14 @@ namespace MarsQA.StepDefinitions
             driver = new ChromeDriver();
 
             // Login page Object login and initialization and defination
-            loginPageObj.LoginSteps(driver);
+            loginPageObj.LoginSteps();
         }
 
 
         [When(@"I add certification to my profile")]
         public void WhenIAddCertificationToMyProfile()
         {
-            profilePageObj.GoToProfilePage(driver);
+            profilePageObj.GoToProfilePage();
             certificatePageObj.AddCertificate(driver);
 
         }

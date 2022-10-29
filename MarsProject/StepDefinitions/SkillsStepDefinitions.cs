@@ -10,9 +10,16 @@ namespace MarsQA.StepDefinitions
     [Binding]
     public class SkillsStepDefinitions : CommonDriver
     {
-        ProfilePage profilePageObj = new ProfilePage();
-        LoginPage loginPageObj = new LoginPage();
-        SkillsPage skillsPageObj = new SkillsPage();
+        ProfilePage profilePageObj;
+        LoginPage loginPageObj;
+        SkillsPage skillsPageObj;
+
+        public SkillsStepDefinitions ()
+        {
+            this.profilePageObj = new ProfilePage ();
+            this.loginPageObj = new LoginPage ();
+            this.skillsPageObj = new SkillsPage ();
+        }
 
         [Given(@"I logged on Mars portal successfully")]
         public void GivenILoggedOnMarsPortalSuccessfully()
@@ -21,13 +28,13 @@ namespace MarsQA.StepDefinitions
             driver = new ChromeDriver();
 
             // Login page Object login and initialization and defination
-            loginPageObj.LoginSteps(driver);
+            loginPageObj.LoginSteps();
         }
 
         [When(@"I add Skills on my profile")]
         public void WhenIAddSkillsOnMyProfile()
         {
-            profilePageObj.GoToProfilePage(driver);
+            profilePageObj.GoToProfilePage();
             skillsPageObj.AddSkills(driver);
         }
 

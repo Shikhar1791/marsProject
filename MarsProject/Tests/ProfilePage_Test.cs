@@ -21,7 +21,7 @@ namespace MarsQA.Tests
 
         {
 
-            profilePageObj.GoToProfilePage(driver);
+            profilePageObj.GoToProfilePage();
             descriptionPageObj.AddDescription(driver, description);
 
         }
@@ -30,7 +30,7 @@ namespace MarsQA.Tests
         public void AddLanguage_Test()
         {
 
-            profilePageObj.GoToProfilePage(driver);
+            profilePageObj.GoToProfilePage();
             languagePageObj.AddLanguage(driver);
 
         }
@@ -40,7 +40,7 @@ namespace MarsQA.Tests
         public void UpdateLanguage_Test(IWebDriver driver, string Language, string Level)
         {
 
-            profilePageObj.GoToProfilePage(driver);
+            profilePageObj.GoToProfilePage();
             languagePageObj.UpdateLanguage(driver, Language, Level);
 
         }
@@ -49,7 +49,7 @@ namespace MarsQA.Tests
         public void DeleteLanguage_Test()
         {
 
-            profilePageObj.GoToProfilePage(driver);
+            profilePageObj.GoToProfilePage();
             languagePageObj.DeleteLanguage(driver);
 
         }

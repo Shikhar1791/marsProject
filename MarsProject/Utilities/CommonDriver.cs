@@ -18,7 +18,7 @@ namespace MarsQA.Utilities
 
             //Login page object initialization and definition
             LoginPage loginPageObj = new LoginPage();
-            loginPageObj.LoginSteps(driver);
+            loginPageObj.LoginSteps();
 
         }
 

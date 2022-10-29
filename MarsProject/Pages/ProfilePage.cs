@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using MarsQA.Utilities;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +9,20 @@ using System.Threading.Tasks;
 
 namespace MarsQA.Pages
 {
-  public class ProfilePage
+  public class ProfilePage : CommonDriver
+
+
     {
-        public void GoToProfilePage(IWebDriver driver)
+     
+        public void GoToProfilePage()
         {
 
             // Click on ProfileTab
-            IWebElement ProfileTab = driver.FindElement(By.XPath("//*[@id=\'account-profile-section\']/div/section[1]/div/a[2]"));
+            Wait.WaitToBeClickable(driver, "XPath", "//section/div/a[@href='/Account/Profile']", 3);
+            IWebElement ProfileTab = driver.FindElement(By.XPath("//section/div/a[@href='/Account/Profile']"));
             ProfileTab.Click();
 
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
         }
 
     }

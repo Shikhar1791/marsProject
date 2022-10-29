@@ -11,9 +11,15 @@ namespace MarsQA.StepDefinitions
     [Binding]
     public class LanguageStepDefinitions : CommonDriver
     {
-        LanguagePage languagePageObj = new LanguagePage();
-        ProfilePage profilePageObj = new ProfilePage();
-        LoginPage loginPageObj = new LoginPage();
+        LanguagePage languagePageObj;
+        ProfilePage profilePageObj;
+        LoginPage loginPageObj;
+        public LanguageStepDefinitions()
+        {
+            this.languagePageObj = new LanguagePage();
+            this.profilePageObj = new ProfilePage();
+            this.loginPageObj = new LoginPage();
+        }
 
         [Given(@"I logged in Mars portal successfully")]
         public void GivenILoggedOntoMarsPortalSuccessfully()
@@ -22,13 +28,13 @@ namespace MarsQA.StepDefinitions
             driver = new ChromeDriver();
 
             // Login page Object login and initialization and defination
-            loginPageObj.LoginSteps(driver);
+            loginPageObj.LoginSteps();
         }
 
         [When(@"I add language on my profile")]
         public void WhenIAddLanguageOnMyProfile()
         {
-            profilePageObj.GoToProfilePage(driver);
+            profilePageObj.GoToProfilePage();
             languagePageObj.AddLanguage(driver);
         }
 
@@ -71,7 +77,7 @@ namespace MarsQA.StepDefinitions
         {
             string Deletedalerttext = languagePageObj.GetDeletedLanguage(driver);
             Assert.That(Deletedalerttext == "French has been deleted from your languages", "Language is not deleted");
-            
+
         }
     }
 }

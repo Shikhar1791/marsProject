@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using MarsQA.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,10 @@ using System.Threading.Tasks;
 
 namespace MarsQA.Pages
 {
-    public class LoginPage
+    public class LoginPage : CommonDriver
+
     {
-        public void LoginSteps(IWebDriver driver)
+        public void LoginSteps()
         {
             try
             {
@@ -33,7 +35,6 @@ namespace MarsQA.Pages
                 IWebElement loginButton = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[4]/button"));
                 loginButton.Click();
 
-                Thread.Sleep(1000);
             }
 
             catch (Exception ex)
